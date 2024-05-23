@@ -1,0 +1,38 @@
+create table mentorinfo(
+men_id int primary key, 
+email varchar(30) ,
+contact_no int, 
+assigned_batch varchar(30));
+
+create table batch_info(
+btid int primary key,
+btname varchar(30),
+tot_stud int,
+men_id int,
+foreign key (men_id) references mentorinfo(men_id)
+);
+
+create table stud_info(
+stud_id int primary key,
+stud_name varchar(30),
+mob_num int,
+btid int,
+foreign key (btid) references batch_info(btid),
+btname varchar(30)
+);
+
+create table taskinfo(
+taskid int primary key,
+taskname varchar(30),
+stud_id int,
+foreign key (stud_id) references stud_info(stud_id),
+men_id int,
+foreign key (men_id) references mentorinfo(men_id),
+mentor_name varchar(30),
+btname varchar(30)
+);
+
+describe mentorinfo;
+describe batch_info;
+describe stud_info;
+describe taskinfo;
